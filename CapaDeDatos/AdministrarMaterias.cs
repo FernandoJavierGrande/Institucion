@@ -15,7 +15,8 @@ namespace CapaDeDatos
 
         public bool AgregarMateria(Materia materia )
         {
-            string query = $"INSERT INTO Materias VALUES ('{materia.Id}','{materia.Nombre}','{materia.Turno}')";
+           
+            string query = $"INSERT INTO Materias VALUES ('{materia.Nombre}','{materia.Turno}')";
             int rows;
 
             try

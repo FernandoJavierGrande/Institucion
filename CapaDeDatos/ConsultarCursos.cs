@@ -12,9 +12,10 @@ namespace CapaDeDatos
     {
         SqlCommand cmd;
 
-        public DataSet MateriasPorAlumno(int dni)
+        public DataSet MateriasPorAlumno(string dni)
         {
-            string query = $"SELECT a.Id_Materia, b.Nombre, b.Turno, a.Aprobada FROM Cursos AS a INNER JOIN Materias AS b ON A.Id_Materia=b.Id WHERE a.Dni='{dni}'";
+
+            string query = $"SELECT a.IdAlumno, a.IdMateria, b.Nombre, b.Turno, a.Aprobado FROM Cursos AS a INNER JOIN Materias AS b ON A.IdMateria=b.IdMateria WHERE a.IdAlumno={dni}";
 
             SqlCommand cmd = new SqlCommand(query, conexion);
 
