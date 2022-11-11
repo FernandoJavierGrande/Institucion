@@ -72,6 +72,7 @@ namespace CapaDeDatos
             catch (Exception)
             {
 
+                return dataSet = null;
                 throw new Exception("No se pudo realizar la busqueda");
             }
             finally
@@ -79,18 +80,22 @@ namespace CapaDeDatos
                 CerrarConn();
                 cmd.Dispose();
             }
-
         }
 
         public bool Mod_Alumno(Alumno alumno)
         {
-            DataSet resp = Listar_Alumnos(alumno.Dni);
-            Alumno alumnoMod = new Alumno(); //ver
+            #region eliminar
+            //DataSet resp = Listar_Alumnos(alumno.Dni);
+            //Alumno alumnoMod = new Alumno(); //ver
 
-            if (resp == null) 
-                return false;
+            //if (resp.Tables.Count < 1) 
+            //    return false;
 
-            string query = $"UPDATE"; //FALTA
+            //alumnoMod.IdAlumno = int.Parse( resp.Tables[0].Rows[0]["IdAlumno"].ToString());
+            #endregion
+
+
+            string query = $"UPDATE Alumnos SET Dni = '{alumno.Dni}', Nombre = '{alumno.Nombre}', Apellido = '{alumno.Dni}', Edad = {alumno.Edad}, FechaInicio '{alumno.FechaIngreso}' FROM (SELECT a.IdAlumno FROM Alumnos AS a WHERE a.Dni ='{alumno.Dni}') AS id WHERE Alumnos.IdAlumno = id.IdAlumno'";
             int rows;
 
             try
@@ -114,8 +119,34 @@ namespace CapaDeDatos
                 CerrarConn();
                 cmd.Dispose();
             }
+        }
 
-            
+        public bool EliminarAlumno(string dni)
+        {
+            string query = $"DELETE FROM Alumnos WHERE Dni='{dni}'";
+            int rows;
+            try
+            {
+                AbrirConn();
+                cmd = new SqlCommand(query, conexion);
+
+                rows = cmd.ExecuteNonQuery();
+
+                if (rows < 1) throw new Exception("No se pudo Eliminar");
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            finally
+            {
+                CerrarConn();
+                cmd.Dispose();
+            }
+
         }
     }
 }

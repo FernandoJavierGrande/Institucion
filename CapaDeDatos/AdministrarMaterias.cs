@@ -67,6 +67,61 @@ namespace CapaDeDatos
                 cmd.Dispose();
             }
         }
-        //confirmar si modificamos las materias
+
+        public bool Mod_Materia(Materia materia)
+        {
+            string query = $"UPDATE Materias SET Nombre = '{materia.Nombre}', Turno = '{materia.Turno}' WHERE IdMateria = '{materia.Id}'";
+            int rows;
+
+            try
+            {
+                AbrirConn();
+                cmd = new SqlCommand(query, conexion);
+
+                rows = cmd.ExecuteNonQuery();
+
+                if (rows < 1) throw new Exception("No se pudo modificar");
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            finally
+            {
+                CerrarConn();
+                cmd.Dispose();
+            }
+        }
+        public bool EliminarMateria(int id)
+        {
+            string query = $"DELETE FROM Materias WHERE IdMateria={id}";
+            int rows;
+            try
+            {
+                AbrirConn();
+                cmd = new SqlCommand(query, conexion);
+
+                rows = cmd.ExecuteNonQuery();
+
+                if (rows < 1) throw new Exception("No se pudo Eliminar");
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            finally
+            {
+                CerrarConn();
+                cmd.Dispose();
+            }
+
+        }
+
     }
 }
