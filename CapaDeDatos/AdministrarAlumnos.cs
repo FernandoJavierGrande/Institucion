@@ -41,11 +41,11 @@ namespace CapaDeDatos
             }
         }
 
-        public DataSet Listar_Alumnos(int dni = 0)
+        public DataSet Listar_Alumnos(string dni = "0")
         {
             string query;
 
-            if (dni == 0)
+            if (dni == "0")
             {
                 query = "SELECT * FROM Alumnos";
             }

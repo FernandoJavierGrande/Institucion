@@ -8,7 +8,7 @@ namespace Entidades
 {
     public class Alumno
     {
-        private int dni;
+        private string dni;
         private string nombre;
         private string apellido;
         private int edad;
@@ -18,7 +18,7 @@ namespace Entidades
 
         }
 
-        public Alumno(int dni, string nombre, string apellido, int edad, DateTime fechaIngreso)
+        public Alumno(string dni, string nombre, string apellido, int edad, DateTime fechaIngreso)
         {
             Dni = dni;
             Nombre = nombre;
@@ -27,7 +27,7 @@ namespace Entidades
             FechaIngreso = fechaIngreso;
         }
 
-        public int Dni { get => dni; set => dni = value; }
+        public string Dni { get => dni; set => dni = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apellido { get => apellido; set => apellido = value; }
         public int Edad { get => edad; set => edad = value; }
