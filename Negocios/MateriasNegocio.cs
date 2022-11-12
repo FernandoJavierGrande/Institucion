@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entidades;
 
 namespace Negocios
 {
@@ -37,6 +38,19 @@ namespace Negocios
 
             return dt;
         }
-        //alumnoMod.IdAlumno = int.Parse(resp.Tables[0].Rows[0]["IdAlumno"].ToString()
+        public bool crearMateria(string nombre, string turno)
+        {
+            materias = new AdministrarMaterias();
+
+            Materia nuevaMateria = new Materia();
+
+            nuevaMateria.IdMateria = 0;
+            nuevaMateria.Nombre = nombre;
+            nuevaMateria.Turno= turno;
+
+            bool resp = materias.AgregarMateria(nuevaMateria);
+
+            return resp;
+        }
     }
 }

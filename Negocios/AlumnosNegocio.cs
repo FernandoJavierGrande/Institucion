@@ -18,7 +18,25 @@ namespace Negocios
             DataTable dt = new DataTable();
             dt = alumnos.Listar_Alumnos(dni);
             return dt;
-        } 
+        }
 
+        public bool crearAlumno(string nombre, string apellido, string dni, int edad, DateTime fechaIng)
+        {
+            alumnos = new AdministrarAlumnos();
+
+            Alumno nuevoAlumno = new Alumno();
+
+            nuevoAlumno.IdAlumno = 0;
+            nuevoAlumno.Nombre = nombre;
+            nuevoAlumno.Apellido = apellido;
+            nuevoAlumno.Dni = dni;
+            nuevoAlumno.Edad = edad;
+            nuevoAlumno.FechaIngreso = fechaIng.Date;
+
+            bool resp = alumnos.CrearAlumno(nuevoAlumno);
+
+            return resp;
+        }
     }
+    
 }

@@ -10,7 +10,7 @@ namespace Entidades
     {
         // para la bbdd materia y turno tendrian que ser uq para que no pueda haber dos "lengua" en turno tarde
 
-        private int id;
+        private int idMateria;
         private string nombre;
         private string turno;
         public Materia()
@@ -20,12 +20,12 @@ namespace Entidades
 
         public Materia(int id, string nombre, string turno)
         {
-            Id = id;
+            IdMateria = id;
             Nombre = nombre;
             Turno = turno;
         }
 
-        public int Id { get => id; set => id = value; }
+        public int IdMateria { get => idMateria; set => idMateria = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Turno { get => turno; set => turno = value; }
     }

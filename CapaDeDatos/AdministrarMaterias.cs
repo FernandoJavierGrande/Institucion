@@ -70,7 +70,7 @@ namespace CapaDeDatos
 
         public bool Mod_Materia(Materia materia)
         {
-            string query = $"UPDATE Materias SET Nombre = '{materia.Nombre}', Turno = '{materia.Turno}' WHERE IdMateria = '{materia.Id}'";
+            string query = $"UPDATE Materias SET Nombre = '{materia.Nombre}', Turno = '{materia.Turno}' WHERE IdMateria = '{materia.IdMateria}'";
             int rows;
 
             try
