@@ -41,7 +41,7 @@ namespace CapaDeDatos
             }
         }
 
-        public DataSet Listar_Alumnos(string dni = "0")
+        public DataTable Listar_Alumnos(string dni = "0")
         {
             string query;
 
@@ -56,7 +56,7 @@ namespace CapaDeDatos
 
             SqlCommand cmd = new SqlCommand(query, conexion);
 
-            DataSet dataSet = new DataSet();
+            DataTable dt = new DataTable();
 
             SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
 
@@ -65,14 +65,14 @@ namespace CapaDeDatos
                 AbrirConn();
                 cmd.ExecuteNonQuery();
                 dataAdapter.SelectCommand = cmd;
-                dataAdapter.Fill(dataSet);
+                dataAdapter.Fill(dt);
 
-                return dataSet;
+                return dt;
             }
             catch (Exception)
             {
 
-                return dataSet = null;
+                return dt = null;
                 throw new Exception("No se pudo realizar la busqueda");
             }
             finally

@@ -16,7 +16,7 @@ namespace Institucion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormInstitucion());
+            Application.Run(new FormularioInstitucion());
         }
     }
 }

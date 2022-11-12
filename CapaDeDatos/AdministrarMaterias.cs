@@ -41,13 +41,13 @@ namespace CapaDeDatos
                 cmd.Dispose();
             }
         }
-        public DataSet Listar_Materias()
+        public DataTable Listar_Materias()
         {
             string query = $"SELECT * FROM Materias ORDER BY Nombre ASC";
 
             SqlCommand cmd = new SqlCommand(query, conexion);
 
-            DataSet dataSet = new DataSet();
+            DataTable dt = new DataTable();
 
             SqlDataAdapter DataAdapter = new SqlDataAdapter(cmd);
 
@@ -56,11 +56,11 @@ namespace CapaDeDatos
                 AbrirConn();
                 cmd.ExecuteNonQuery();
                 DataAdapter.SelectCommand = cmd;
-                DataAdapter.Fill(dataSet);
+                DataAdapter.Fill(dt);
 
-                return dataSet;
+                return dt;
             }
-            catch (Exception) {throw new Exception("No se pudo realizar la busqueda");}
+            catch (Exception e) {throw new Exception("No se pudo realizar la busqueda " +e);}
             finally
             {
                 CerrarConn();
