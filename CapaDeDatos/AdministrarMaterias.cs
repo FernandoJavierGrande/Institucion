@@ -41,9 +41,19 @@ namespace CapaDeDatos
                 cmd.Dispose();
             }
         }
-        public DataTable Listar_Materias()
+        public DataTable Listar_Materias(string nombreMateria = "void")
         {
-            string query = $"SELECT * FROM Materias ORDER BY Nombre ASC";
+            string query;
+            if (nombreMateria.Equals("void"))
+            {
+                query = $"SELECT * FROM Materias ORDER BY Nombre ASC";
+            }
+            else
+            {
+                query = $"SELECT * FROM Materias WHERE Nombre LIKE '{nombreMateria}' ORDER BY Nombre ASC";
+            }
+
+            
 
             SqlCommand cmd = new SqlCommand(query, conexion);
 

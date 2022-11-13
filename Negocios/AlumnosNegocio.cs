@@ -31,6 +31,7 @@ namespace Negocios
             nuevoAlumno.Apellido = apellido;
             nuevoAlumno.Dni = dni;
             nuevoAlumno.Edad = edad;
+
             nuevoAlumno.FechaIngreso = fechaIng.Date;
 
             bool resp = alumnos.CrearAlumno(nuevoAlumno);

@@ -378,6 +378,7 @@
             this.Btn_BuscarMateria.TabIndex = 13;
             this.Btn_BuscarMateria.Text = "Buscar";
             this.Btn_BuscarMateria.UseVisualStyleBackColor = true;
+            this.Btn_BuscarMateria.Click += new System.EventHandler(this.Btn_BuscarMateria_Click);
             // 
             // Btn_EliminarMateria
             // 
@@ -388,6 +389,7 @@
             this.Btn_EliminarMateria.TabIndex = 12;
             this.Btn_EliminarMateria.Text = "Eliminar";
             this.Btn_EliminarMateria.UseVisualStyleBackColor = true;
+            this.Btn_EliminarMateria.Click += new System.EventHandler(this.Btn_EliminarMateria_Click);
             // 
             // Btn_EditarMateria
             // 
@@ -408,10 +410,15 @@
             this.Btn_GuardarMateria.TabIndex = 10;
             this.Btn_GuardarMateria.Text = "Guardar";
             this.Btn_GuardarMateria.UseVisualStyleBackColor = true;
+            this.Btn_GuardarMateria.Click += new System.EventHandler(this.Btn_GuardarMateria_Click);
             // 
             // ComboBox_TurnoMateria
             // 
             this.ComboBox_TurnoMateria.FormattingEnabled = true;
+            this.ComboBox_TurnoMateria.Items.AddRange(new object[] {
+            "Mañana ",
+            "Tarde",
+            "Noche"});
             this.ComboBox_TurnoMateria.Location = new System.Drawing.Point(180, 85);
             this.ComboBox_TurnoMateria.Margin = new System.Windows.Forms.Padding(4);
             this.ComboBox_TurnoMateria.Name = "ComboBox_TurnoMateria";

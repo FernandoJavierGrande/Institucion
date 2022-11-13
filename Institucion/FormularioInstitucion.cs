@@ -17,6 +17,10 @@ namespace Institucion
     {
         MateriasNegocio materias = new MateriasNegocio();
         AlumnosNegocio alumnos = new AlumnosNegocio();
+
+        DataTable dt = new DataTable();
+        Materia materiaEnMemoria = new Materia();
+
         public FormularioInstitucion()
         {
             InitializeComponent();
@@ -35,18 +39,28 @@ namespace Institucion
             ComboBox_SeleccionarMateria1.DataSource = ListaMateria;
             ComboBox_SeleccionarMateria1.DisplayMember = "Nombre";
             ComboBox_SeleccionarMateria1.ValueMember = "IdMateria";
+
+            Btn_EditarMateria.Enabled = false;
+            Btn_EliminarMateria.Enabled = false;
         }
 
         
 
 
-        private bool validarTxt(TextBox txt, string tipo= "void")
+        private bool validarTxt(TextBox txt, string tipo= "text")
         {
             if (txt.Text == string.Empty)
             {
                 error.SetError(txt, $"Campo obligatorio");
                 return false;
             }
+            else if (txt.Text != string.Empty && tipo== "text") 
+            {
+                //si esta vacio y es tipo text va true xq es la unica validacion nec
+                return true;
+            }
+
+
             
             if (tipo.Equals("number"))
             {
@@ -81,7 +95,7 @@ namespace Institucion
         }
         private void Limpiar()
         {
-
+            //completar
         }
 
         private void Btn_GuardarAlumno_Click(object sender, EventArgs e)
@@ -112,6 +126,98 @@ namespace Institucion
                 }
                 MessageBox.Show(mensaje);
             }
+        }
+
+        private void Btn_GuardarMateria_Click(object sender, EventArgs e)
+        {
+            bool validNombre = validarTxt(Txt_NombreMateria);
+            string mensaje;
+
+            if (ComboBox_TurnoMateria.SelectedIndex == -1)
+            {
+                error.SetError(ComboBox_TurnoMateria, "seleccione un turno");
+            }
+
+
+            if (!validNombre && ComboBox_TurnoMateria.SelectedIndex != -1)
+            {
+                string item = ComboBox_TurnoMateria.SelectedItem.ToString();
+                
+                materias = new MateriasNegocio();
+
+                bool guardado = materias.crearMateria(Txt_NombreMateria.Text, item);
+                
+                if (guardado)
+                {
+                    mensaje = "Se guardó correctamente";
+                    Limpiar();
+                }
+                else
+                {
+                    mensaje = "No se guardó";
+                }
+                MessageBox.Show(mensaje);
+            }
+            
+            
+        }
+
+        private void Btn_EliminarMateria_Click(object sender, EventArgs e)
+        {
+            string mensaje = $"¿Desea Eliminar la materia Id:{materiaEnMemoria.IdMateria} \n{materiaEnMemoria.Nombre}";
+
+            DialogResult result = MessageBox.Show(mensaje,"Eliminar materia", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                materias = new MateriasNegocio();
+
+                bool resp = materias.EliminarMateria(materiaEnMemoria.IdMateria);
+
+                if (!resp)
+                {
+                    MessageBox.Show("No se pudo eliminar");
+                }
+                else
+                {
+                    Limpiar();
+                }
+            }      
+
+        }
+
+        private void Btn_BuscarMateria_Click(object sender, EventArgs e)
+        {
+            error.Clear();
+
+            bool validado = validarTxt(Txt_NombreMateria);
+            Console.WriteLine(validado);    
+            materias = new MateriasNegocio();
+
+            dt = new DataTable();
+
+            if (validado)
+            {
+                dt = materias.buscarMateria(Txt_NombreMateria.Text);
+                if (dt.Rows.Count>0)
+                {
+                    materiaEnMemoria.IdMateria = int.Parse(dt.Rows[0][0].ToString());
+                    materiaEnMemoria.Nombre = dt.Rows[0][1].ToString();
+                    materiaEnMemoria.Turno = dt.Rows[0][2].ToString();
+
+                    Txt_NombreMateria.Text = materiaEnMemoria.Nombre;
+                    ComboBox_TurnoMateria.Text = materiaEnMemoria.Turno;
+
+                    Btn_EliminarMateria.Enabled = true;
+                    Btn_EditarMateria.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("No encontrado, intente nuevamente");
+                } 
+            }
+
+            
         }
     }
 }

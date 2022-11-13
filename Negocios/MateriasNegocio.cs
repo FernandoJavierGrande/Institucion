@@ -52,5 +52,33 @@ namespace Negocios
 
             return resp;
         }
+        public bool EliminarMateria(int idMateria)
+        {
+            materias = new AdministrarMaterias();
+
+            return materias.EliminarMateria(idMateria);
+        }
+        public bool ModificarMateria(int id,string nombre, string turno)
+        {
+            materias = new AdministrarMaterias();
+
+            Materia MateriaMod = new Materia();
+
+            MateriaMod.IdMateria = id;
+            MateriaMod.Nombre = nombre;
+            MateriaMod.Turno = turno;
+
+            return materias.Mod_Materia(MateriaMod);
+        }
+
+        public DataTable buscarMateria(string nombreMateria)
+        {
+            materias = new AdministrarMaterias();
+            DataTable dt = new DataTable();
+
+            dt = materias.Listar_Materias(nombreMateria);
+
+            return dt;
+        }
     }
 }
