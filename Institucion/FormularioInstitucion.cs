@@ -259,7 +259,6 @@ namespace Institucion
 
         #endregion
 
-
         #region metodos
         private bool validarTxt(TextBox txt, string tipo = "text")
         {

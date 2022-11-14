@@ -102,7 +102,7 @@ namespace CapaDeDatos
             try
             {
                 AbrirConn();
-                cmd = new SqlCommand(quert, conexion);
+                cmd = new SqlCommand(query, conexion);
                 
                 rows = cmd.ExecuteNonQuery();
 
