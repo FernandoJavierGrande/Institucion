@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -12,14 +13,14 @@ namespace CapaDeDatos
     {
         SqlCommand cmd;
 
-        public DataSet MateriasPorAlumno(int IdAlumno)
+        public DataTable MateriasPorAlumno(int IdAlumno)
         {
 
             string query = $"SELECT a.IdAlumno, a.IdMateria, b.Nombre, b.Turno, a.Aprobado FROM Cursos AS a INNER JOIN Materias AS b ON A.IdMateria=b.IdMateria WHERE a.IdAlumno={IdAlumno}";
 
             SqlCommand cmd = new SqlCommand(query, conexion);
 
-            DataSet dataSet = new DataSet();
+            DataTable dt = new DataTable();
 
             SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
 
@@ -28,9 +29,9 @@ namespace CapaDeDatos
                 AbrirConn();
                 cmd.ExecuteNonQuery();
                 dataAdapter.SelectCommand = cmd;
-                dataAdapter.Fill(dataSet);
+                dataAdapter.Fill(dt);
 
-                return dataSet;
+                return dt;
             }
             catch (Exception) { throw new Exception("Error intente nuevamente"); }
             finally
@@ -40,14 +41,14 @@ namespace CapaDeDatos
             }
         }
 
-        public DataSet AlumnosPorMateria(int id)
+        public DataTable AlumnosPorMateria(int id)
         {
 
             string query = $"SELECT  a.IdAlumno, b.Nombre, b.Apellido, b.Dni, a.Aprobado FROM CURSOS AS a INNER JOIN Alumnos AS b ON a.IdAlumno = b.IdAlumno WHERE a.IdMateria = {id}";
 
             SqlCommand cmd = new SqlCommand(query, conexion);
 
-            DataSet dataSet = new DataSet();
+            DataTable dt = new DataTable(); 
 
             SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
 
@@ -56,9 +57,9 @@ namespace CapaDeDatos
                 AbrirConn();
                 cmd.ExecuteNonQuery();
                 dataAdapter.SelectCommand = cmd;
-                dataAdapter.Fill(dataSet);
+                dataAdapter.Fill(dt);
 
-                return dataSet;
+                return dt;
             }
             catch (Exception) { throw new Exception("Error intente nuevamente"); }
             finally
@@ -92,6 +93,35 @@ namespace CapaDeDatos
                 CerrarConn();
                 cmd.Dispose();
             }
+        }
+        public bool CrearCursada(Cursos curso)
+        {
+            string query = $"INSERT INTO Alumnos VALUES ('{curso.IdAlumno}','{curso.Id_Materia}','{curso.Aprobada}')";
+
+            int rows;
+
+            try
+            {
+                AbrirConn();
+
+                cmd = new SqlCommand(query, conexion);
+
+                rows = cmd.ExecuteNonQuery();
+
+                if (rows < 1) throw new Exception($"No se pudo crear");
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            finally
+            {
+                CerrarConn();
+                cmd.Dispose();
+            }
+
         }
     }
 }

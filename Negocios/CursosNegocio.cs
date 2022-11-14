@@ -1,4 +1,5 @@
 ﻿using CapaDeDatos;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,11 +11,11 @@ namespace Negocios
 {
     public class CursosNegocio
     {
-        CursosNegocio cursos;
+        AdministrarCursos cursos;
 
         public DataTable MateriasPorAlumno(int idAlumno)
         {
-            cursos = new CursosNegocio();
+            cursos = new AdministrarCursos();
             DataTable dt = new DataTable();
 
             dt = cursos.MateriasPorAlumno(idAlumno);
@@ -23,7 +24,7 @@ namespace Negocios
 
         public DataTable AlumnosPorMateria(int idMateria)
         {
-            cursos = new CursosNegocio();
+            cursos = new AdministrarCursos();
             DataTable dt = new DataTable();
 
             dt = cursos.AlumnosPorMateria(idMateria);
@@ -32,9 +33,26 @@ namespace Negocios
 
         public bool eliminarCursada(int idAlumno, int idMateria)
         {
-            cursos = new CursosNegocio();
+            cursos = new AdministrarCursos();
             
-            return cursos.eliminarCursada(idAlumno,idMateria);
+            return cursos.EliminarCursada(idAlumno,idMateria);
+        }
+
+        public bool CrearCursada(int idAlumno, int idMateria, bool aprobado)
+        {
+            
+            
+            cursos = new AdministrarCursos();
+
+            Cursos nuevaCursada = new Cursos();
+
+            nuevaCursada.Id_Materia = idMateria;
+            nuevaCursada.IdAlumno = idAlumno;
+            nuevaCursada.Aprobada  = aprobado;
+
+            bool resp = cursos.CrearCursada(nuevaCursada);
+
+            return resp;
         }
 
     }

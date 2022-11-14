@@ -95,7 +95,7 @@ namespace CapaDeDatos
             #endregion
 
             Console.WriteLine(alumno.Dni);
-            string quert = $"UPDATE Alumnos SET Dni = '{alumno.Dni}', Nombre = '{alumno.Nombre}', Apellido = '{alumno.Apellido}', Edad = {alumno.Edad}, FechaInicio ='{alumno.FechaIngreso}' FROM (SELECT a.IdAlumno FROM Alumnos AS a WHERE a.Dni ='40171398') AS id WHERE Alumnos.IdAlumno = id.IdAlumno";
+            
             string query = $"UPDATE Alumnos SET Dni = '{alumno.Dni}', Nombre = '{alumno.Nombre}', Apellido = '{alumno.Apellido}', Edad = {alumno.Edad}, FechaInicio ='{alumno.FechaIngreso}' FROM (SELECT a.IdAlumno FROM Alumnos AS a WHERE a.Dni ='{alumno.Dni}') AS id WHERE Alumnos.IdAlumno = id.IdAlumno";
             int rows;
             Console.WriteLine(alumno.Dni);

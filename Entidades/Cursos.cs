@@ -8,7 +8,7 @@ namespace Entidades
 {
     public class Cursos
     {
-        private int dni;
+        private int idAlumno;
         private int id_Materia;
         private bool aprobada;
         public Cursos()
@@ -16,14 +16,14 @@ namespace Entidades
 
         }
 
-        public Cursos(int dni, int id_Materia, bool aprobada)
+        public Cursos(int idAlumno, int id_Materia, bool aprobada)
         {
-            Dni = dni;
+            IdAlumno = idAlumno;
             Id_Materia = id_Materia;
             Aprobada = aprobada;
         }
 
-        public int Dni { get => dni; set => dni = value; }
+        public int IdAlumno { get => idAlumno; set => idAlumno = value; }
         public int Id_Materia { get => id_Materia; set => id_Materia = value; }
         public bool Aprobada { get => aprobada; set => aprobada = value; }
     }

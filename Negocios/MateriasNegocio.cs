@@ -36,7 +36,7 @@ namespace Negocios
                 dt.Rows[i]["Nombre"] = $"{dt.Rows[i]["Nombre"]} - {dt.Rows[i]["Turno"]}";
 
                 int id = int.Parse( dt.Rows[i]["IdMateria"].ToString());
-                string nombre = dt.Rows[i]["nombre"].ToString();
+                string nombre = dt.Rows[i]["Nombre"].ToString();
                 string turno = dt.Rows[i]["Turno"].ToString();
 
                 list.Add(new Materia { IdMateria =id,Nombre = nombre, Turno = turno });

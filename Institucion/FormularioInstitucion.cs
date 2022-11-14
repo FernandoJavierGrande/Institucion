@@ -12,6 +12,7 @@ namespace Institucion
     {
         MateriasNegocio materias = new MateriasNegocio();
         AlumnosNegocio alumnos = new AlumnosNegocio();
+        CursosNegocio cursos = new CursosNegocio();
 
         DataTable dt = new DataTable();
         Materia materiaEnMemoria = new Materia();
@@ -204,6 +205,7 @@ namespace Institucion
 
         }
 
+
         private void Btn_BuscarMateria_Click(object sender, EventArgs e)
         {
             ComboBox_ListSubject.Visible = true;
@@ -216,10 +218,16 @@ namespace Institucion
                 materiaEnMemoria = new Materia();
 
                 materiaEnMemoria.IdMateria = int.Parse(ComboBox_ListSubject.SelectedValue.ToString());
-                materiaEnMemoria.Nombre = ComboBox_ListSubject.SelectedItem.ToString();
+
+                materiaEnMemoria.Nombre = ((Materia)ComboBox_ListSubject.SelectedItem).Nombre;
+
+                materiaEnMemoria.Turno = ((Materia)ComboBox_ListSubject.SelectedItem).Turno;
+
+                Txt_NombreMateria.Text = materiaEnMemoria.Nombre.ToString().Split('\u002D')[0].Trim();
+
+                ComboBox_TurnoMateria.SelectedItem = materiaEnMemoria.Turno;
 
                 EnableBtn("materia", true);
-                Console.WriteLine($" id {ComboBox_ListSubject.SelectedValue} {materiaEnMemoria.IdMateria}");
             }
         }
 
@@ -254,7 +262,16 @@ namespace Institucion
         }
 
         #endregion
+        private void Btn_AgregarCursada_Click(object sender, EventArgs e)
+        {
+            bool val = validarTxt(TxtAlumnoQueCursaDni,"dni");
+            
 
+            if (val && ComboBox_SeleccionarMateria.SelectedIndex != -1)
+            {
+                cursos.CrearCursada(); hacer una subconsulta y cambiar por metodos por dni
+            }
+        }
         #region alumnosYmaterias
 
         #endregion
@@ -308,7 +325,6 @@ namespace Institucion
                 return false;
             }
         }
-
         public void CargarCombos()
         {
             ListaMateria = materias.LlenarComboMaterias();
@@ -325,6 +341,8 @@ namespace Institucion
             ComboBox_ListSubject.DisplayMember = "Nombre";
             ComboBox_ListSubject.ValueMember = "IdMateria";
             ComboBox_ListSubject.Visible = false;
+
+            
 
             EnableBtn("materia", false);
             EnableBtn("alumno", false);
@@ -343,12 +361,17 @@ namespace Institucion
             ComboBox_SeleccionarMateria.SelectedIndex = 0;
             ComboBox_SeleccionarMateria1.SelectedIndex = 0;
             Txt_CursoAlumno.Text = "";
+
+            materiaEnMemoria = new Materia();
+            alumnoEnMemoria = new Alumno();
+
+            EnableBtn("alumno", false);
+            EnableBtn("materia", false);
         }
         private void Btn_LimpiarTodo_Click(object sender, EventArgs e)
         {
             Limpiar();
         }
-
         private void EnableBtn(string arg, bool disable)
         {
             if (arg.Equals("alumno"))
@@ -364,7 +387,6 @@ namespace Institucion
                 Btn_GuardarMateria.Enabled = !disable;
             }
         }
-
         private bool validarAlumno()
         {
             bool nombreVal, apellidoVal, dniVal, edadVal;
@@ -384,5 +406,6 @@ namespace Institucion
 
         #endregion
 
+        
     }
 }
