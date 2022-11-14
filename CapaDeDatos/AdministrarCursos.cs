@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CapaDeDatos
 {
-   public class ConsultarCursos: DatosConexion
+   public class AdministrarCursos: DatosConexion
     {
         SqlCommand cmd;
 

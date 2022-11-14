@@ -19,9 +19,9 @@ namespace Negocios
             return materias.Listar_Materias();
         }
 
-        public DataTable LlenarComboMaterias() // duelve un dt adaptado al cmb
+        public List<Materia> LlenarComboMaterias() // duelve un dt adaptado al cmb
         {
-            List<string> list = new List<string>();
+            List<Materia> list = new List<Materia>();
 
             DataTable dt = new DataTable();
 
@@ -32,11 +32,17 @@ namespace Negocios
 
             for (int i = 0; i < cantidad; i++)
             {
+                
                 dt.Rows[i]["Nombre"] = $"{dt.Rows[i]["Nombre"]} - {dt.Rows[i]["Turno"]}";
 
+                int id = int.Parse( dt.Rows[i]["IdMateria"].ToString());
+                string nombre = dt.Rows[i]["nombre"].ToString();
+                string turno = dt.Rows[i]["Turno"].ToString();
+
+                list.Add(new Materia { IdMateria =id,Nombre = nombre, Turno = turno });
             }
 
-            return dt;
+            return list;
         }
         public bool crearMateria(string nombre, string turno)
         {

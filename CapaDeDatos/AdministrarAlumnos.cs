@@ -94,14 +94,15 @@ namespace CapaDeDatos
             //alumnoMod.IdAlumno = int.Parse( resp.Tables[0].Rows[0]["IdAlumno"].ToString());
             #endregion
 
-
-            string query = $"UPDATE Alumnos SET Dni = '{alumno.Dni}', Nombre = '{alumno.Nombre}', Apellido = '{alumno.Dni}', Edad = {alumno.Edad}, FechaInicio '{alumno.FechaIngreso}' FROM (SELECT a.IdAlumno FROM Alumnos AS a WHERE a.Dni ='{alumno.Dni}') AS id WHERE Alumnos.IdAlumno = id.IdAlumno'";
+            Console.WriteLine(alumno.Dni);
+            string quert = $"UPDATE Alumnos SET Dni = '{alumno.Dni}', Nombre = '{alumno.Nombre}', Apellido = '{alumno.Apellido}', Edad = {alumno.Edad}, FechaInicio ='{alumno.FechaIngreso}' FROM (SELECT a.IdAlumno FROM Alumnos AS a WHERE a.Dni ='40171398') AS id WHERE Alumnos.IdAlumno = id.IdAlumno";
+            string query = $"UPDATE Alumnos SET Dni = '{alumno.Dni}', Nombre = '{alumno.Nombre}', Apellido = '{alumno.Apellido}', Edad = {alumno.Edad}, FechaInicio ='{alumno.FechaIngreso}' FROM (SELECT a.IdAlumno FROM Alumnos AS a WHERE a.Dni ='{alumno.Dni}') AS id WHERE Alumnos.IdAlumno = id.IdAlumno";
             int rows;
-
+            Console.WriteLine(alumno.Dni);
             try
             {
                 AbrirConn();
-                cmd = new SqlCommand(query, conexion);
+                cmd = new SqlCommand(quert, conexion);
                 
                 rows = cmd.ExecuteNonQuery();
 

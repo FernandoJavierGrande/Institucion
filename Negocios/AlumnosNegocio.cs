@@ -59,14 +59,30 @@ namespace Negocios
 
             return alumnos.Mod_Alumno(AlumnoMod);
         }
-        public DataTable buscarAlumno(string dni)
+        public Alumno buscarAlumno(string dni)
         {
             alumnos = new AdministrarAlumnos();
             DataTable dt = new DataTable();
+            Alumno alumno = new Alumno();
 
             dt = alumnos.Listar_Alumnos(dni);
+            if (dt.Rows.Count<1)
+            {
+                return null;
+            }
+            else
+            {
+                
+                alumno.Dni = dt.Rows[0][1].ToString();
+                alumno.IdAlumno = int.Parse(dt.Rows[0][0].ToString());
+                alumno.Nombre = dt.Rows[0][2].ToString();
+                alumno.Apellido = dt.Rows[0][3].ToString();
+                alumno.Edad = int.Parse(dt.Rows[0][4].ToString());
+                alumno.FechaIngreso = DateTime.Parse(dt.Rows[0][5].ToString());
+            }
+            
 
-            return dt;
+            return alumno;
         }
     }
     
