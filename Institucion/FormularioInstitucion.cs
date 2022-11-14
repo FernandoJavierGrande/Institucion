@@ -331,7 +331,22 @@ namespace Institucion
         }
         private void Limpiar()
         {
-            //completar
+            Txt_DniAlumno.Text = "";
+            Txt_ApellidoAlumno.Text = "";
+            Txt_NombreAlumno.Text = "";
+            Txt_EdadAlumno.Text = "";
+            Txt_FechaInicio.Text = "";
+            Txt_NombreMateria.Text = "";
+            TxtAlumnoQueCursaDni.Text = "";
+            ComboBox_ListSubject.SelectedIndex = 0;
+            ComboBox_TurnoMateria.SelectedIndex = -1;
+            ComboBox_SeleccionarMateria.SelectedIndex = 0;
+            ComboBox_SeleccionarMateria1.SelectedIndex = 0;
+            Txt_CursoAlumno.Text = "";
+        }
+        private void Btn_LimpiarTodo_Click(object sender, EventArgs e)
+        {
+            Limpiar();
         }
 
         private void EnableBtn(string arg, bool disable)
@@ -366,8 +381,8 @@ namespace Institucion
             return true;
         }
 
+
         #endregion
 
-        
     }
 }

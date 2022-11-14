@@ -11,7 +11,8 @@ namespace CapaDeDatos
     public class DatosConexion
     {
         protected SqlConnection conexion;
-        protected string stringConn = "Server=DESKTOP-55OJM29; Database=InstitucionAlumno; Trusted_Connection=true;";
+        protected string stringConn = "Data Source = DESKTOP-4UUDNRF\\SQLEXPRESS; Initial Catalog = InstitucionAlumno ; Integrated Security = true";
+        /*"Server = DESKTOP-4UUDNRF; Database=InstitucionAlumno; Trusted_Connection=true;";*/ 
         public DatosConexion()
         {
             conexion = new SqlConnection(stringConn);
