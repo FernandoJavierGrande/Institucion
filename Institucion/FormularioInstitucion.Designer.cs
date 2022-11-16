@@ -33,8 +33,6 @@
             this.Pagina_Inscribir = new System.Windows.Forms.TabPage();
             this.TxtAlumnoQueCursaDni = new System.Windows.Forms.TextBox();
             this.Btn_AgregarCursada = new System.Windows.Forms.Button();
-            this.Rb_NoAprobo = new System.Windows.Forms.RadioButton();
-            this.Rb_SiAprobo = new System.Windows.Forms.RadioButton();
             this.ComboBox_SeleccionarMateria = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Txt = new System.Windows.Forms.Label();
@@ -71,6 +69,7 @@
             this.Txt_CursoAlumno = new System.Windows.Forms.TextBox();
             this.error = new System.Windows.Forms.ErrorProvider(this.components);
             this.Btn_LimpiarTodo = new System.Windows.Forms.Button();
+            this.check_aprobado = new System.Windows.Forms.CheckBox();
             this.Pag.SuspendLayout();
             this.Pagina_Inscribir.SuspendLayout();
             this.Pagina_Alumno.SuspendLayout();
@@ -85,7 +84,7 @@
             this.Pag.Controls.Add(this.Pagina_Alumno);
             this.Pag.Controls.Add(this.PaginaMateria);
             this.Pag.Location = new System.Drawing.Point(35, 50);
-            this.Pag.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Pag.Margin = new System.Windows.Forms.Padding(4);
             this.Pag.Name = "Pag";
             this.Pag.SelectedIndex = 0;
             this.Pag.Size = new System.Drawing.Size(447, 357);
@@ -93,18 +92,17 @@
             // 
             // Pagina_Inscribir
             // 
+            this.Pagina_Inscribir.Controls.Add(this.check_aprobado);
             this.Pagina_Inscribir.Controls.Add(this.TxtAlumnoQueCursaDni);
             this.Pagina_Inscribir.Controls.Add(this.Btn_AgregarCursada);
-            this.Pagina_Inscribir.Controls.Add(this.Rb_NoAprobo);
-            this.Pagina_Inscribir.Controls.Add(this.Rb_SiAprobo);
             this.Pagina_Inscribir.Controls.Add(this.ComboBox_SeleccionarMateria);
             this.Pagina_Inscribir.Controls.Add(this.label3);
             this.Pagina_Inscribir.Controls.Add(this.Txt);
             this.Pagina_Inscribir.Controls.Add(this.label1);
             this.Pagina_Inscribir.Location = new System.Drawing.Point(4, 25);
-            this.Pagina_Inscribir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Pagina_Inscribir.Margin = new System.Windows.Forms.Padding(4);
             this.Pagina_Inscribir.Name = "Pagina_Inscribir";
-            this.Pagina_Inscribir.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Pagina_Inscribir.Padding = new System.Windows.Forms.Padding(4);
             this.Pagina_Inscribir.Size = new System.Drawing.Size(439, 328);
             this.Pagina_Inscribir.TabIndex = 0;
             this.Pagina_Inscribir.Text = "Inscribir";
@@ -113,7 +111,7 @@
             // TxtAlumnoQueCursaDni
             // 
             this.TxtAlumnoQueCursaDni.Location = new System.Drawing.Point(197, 81);
-            this.TxtAlumnoQueCursaDni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtAlumnoQueCursaDni.Margin = new System.Windows.Forms.Padding(4);
             this.TxtAlumnoQueCursaDni.Name = "TxtAlumnoQueCursaDni";
             this.TxtAlumnoQueCursaDni.Size = new System.Drawing.Size(132, 22);
             this.TxtAlumnoQueCursaDni.TabIndex = 13;
@@ -121,7 +119,7 @@
             // Btn_AgregarCursada
             // 
             this.Btn_AgregarCursada.Location = new System.Drawing.Point(33, 207);
-            this.Btn_AgregarCursada.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_AgregarCursada.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_AgregarCursada.Name = "Btn_AgregarCursada";
             this.Btn_AgregarCursada.Size = new System.Drawing.Size(100, 28);
             this.Btn_AgregarCursada.TabIndex = 12;
@@ -129,35 +127,11 @@
             this.Btn_AgregarCursada.UseVisualStyleBackColor = true;
             this.Btn_AgregarCursada.Click += new System.EventHandler(this.Btn_AgregarCursada_Click);
             // 
-            // Rb_NoAprobo
-            // 
-            this.Rb_NoAprobo.AutoSize = true;
-            this.Rb_NoAprobo.Location = new System.Drawing.Point(172, 166);
-            this.Rb_NoAprobo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Rb_NoAprobo.Name = "Rb_NoAprobo";
-            this.Rb_NoAprobo.Size = new System.Drawing.Size(46, 20);
-            this.Rb_NoAprobo.TabIndex = 11;
-            this.Rb_NoAprobo.TabStop = true;
-            this.Rb_NoAprobo.Text = "No";
-            this.Rb_NoAprobo.UseVisualStyleBackColor = true;
-            // 
-            // Rb_SiAprobo
-            // 
-            this.Rb_SiAprobo.AutoSize = true;
-            this.Rb_SiAprobo.Location = new System.Drawing.Point(172, 138);
-            this.Rb_SiAprobo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Rb_SiAprobo.Name = "Rb_SiAprobo";
-            this.Rb_SiAprobo.Size = new System.Drawing.Size(40, 20);
-            this.Rb_SiAprobo.TabIndex = 10;
-            this.Rb_SiAprobo.TabStop = true;
-            this.Rb_SiAprobo.Text = "Si";
-            this.Rb_SiAprobo.UseVisualStyleBackColor = true;
-            // 
             // ComboBox_SeleccionarMateria
             // 
             this.ComboBox_SeleccionarMateria.FormattingEnabled = true;
             this.ComboBox_SeleccionarMateria.Location = new System.Drawing.Point(197, 42);
-            this.ComboBox_SeleccionarMateria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComboBox_SeleccionarMateria.Margin = new System.Windows.Forms.Padding(4);
             this.ComboBox_SeleccionarMateria.Name = "ComboBox_SeleccionarMateria";
             this.ComboBox_SeleccionarMateria.Size = new System.Drawing.Size(160, 24);
             this.ComboBox_SeleccionarMateria.TabIndex = 8;
@@ -209,9 +183,9 @@
             this.Pagina_Alumno.Controls.Add(this.label6);
             this.Pagina_Alumno.Controls.Add(this.label5);
             this.Pagina_Alumno.Location = new System.Drawing.Point(4, 25);
-            this.Pagina_Alumno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Pagina_Alumno.Margin = new System.Windows.Forms.Padding(4);
             this.Pagina_Alumno.Name = "Pagina_Alumno";
-            this.Pagina_Alumno.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Pagina_Alumno.Padding = new System.Windows.Forms.Padding(4);
             this.Pagina_Alumno.Size = new System.Drawing.Size(439, 328);
             this.Pagina_Alumno.TabIndex = 1;
             this.Pagina_Alumno.Text = "Nuevo Alumno";
@@ -220,7 +194,7 @@
             // Btn_BuscarAlumno
             // 
             this.Btn_BuscarAlumno.Location = new System.Drawing.Point(159, 272);
-            this.Btn_BuscarAlumno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_BuscarAlumno.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_BuscarAlumno.Name = "Btn_BuscarAlumno";
             this.Btn_BuscarAlumno.Size = new System.Drawing.Size(100, 28);
             this.Btn_BuscarAlumno.TabIndex = 13;
@@ -231,7 +205,7 @@
             // Btn_EliminarAlumno
             // 
             this.Btn_EliminarAlumno.Location = new System.Drawing.Point(159, 236);
-            this.Btn_EliminarAlumno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_EliminarAlumno.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_EliminarAlumno.Name = "Btn_EliminarAlumno";
             this.Btn_EliminarAlumno.Size = new System.Drawing.Size(100, 28);
             this.Btn_EliminarAlumno.TabIndex = 12;
@@ -242,7 +216,7 @@
             // Btn_EditarAlumno
             // 
             this.Btn_EditarAlumno.Location = new System.Drawing.Point(45, 272);
-            this.Btn_EditarAlumno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_EditarAlumno.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_EditarAlumno.Name = "Btn_EditarAlumno";
             this.Btn_EditarAlumno.Size = new System.Drawing.Size(100, 28);
             this.Btn_EditarAlumno.TabIndex = 11;
@@ -253,7 +227,7 @@
             // Btn_GuardarAlumno
             // 
             this.Btn_GuardarAlumno.Location = new System.Drawing.Point(45, 236);
-            this.Btn_GuardarAlumno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_GuardarAlumno.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_GuardarAlumno.Name = "Btn_GuardarAlumno";
             this.Btn_GuardarAlumno.Size = new System.Drawing.Size(100, 28);
             this.Btn_GuardarAlumno.TabIndex = 10;
@@ -274,7 +248,7 @@
             // Txt_FechaInicio
             // 
             this.Txt_FechaInicio.Location = new System.Drawing.Point(136, 190);
-            this.Txt_FechaInicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Txt_FechaInicio.Margin = new System.Windows.Forms.Padding(4);
             this.Txt_FechaInicio.Name = "Txt_FechaInicio";
             this.Txt_FechaInicio.Size = new System.Drawing.Size(265, 22);
             this.Txt_FechaInicio.TabIndex = 8;
@@ -282,7 +256,7 @@
             // Txt_EdadAlumno
             // 
             this.Txt_EdadAlumno.Location = new System.Drawing.Point(125, 154);
-            this.Txt_EdadAlumno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Txt_EdadAlumno.Margin = new System.Windows.Forms.Padding(4);
             this.Txt_EdadAlumno.Name = "Txt_EdadAlumno";
             this.Txt_EdadAlumno.Size = new System.Drawing.Size(132, 22);
             this.Txt_EdadAlumno.TabIndex = 7;
@@ -290,7 +264,7 @@
             // Txt_DniAlumno
             // 
             this.Txt_DniAlumno.Location = new System.Drawing.Point(125, 122);
-            this.Txt_DniAlumno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Txt_DniAlumno.Margin = new System.Windows.Forms.Padding(4);
             this.Txt_DniAlumno.Name = "Txt_DniAlumno";
             this.Txt_DniAlumno.Size = new System.Drawing.Size(132, 22);
             this.Txt_DniAlumno.TabIndex = 6;
@@ -298,7 +272,7 @@
             // Txt_ApellidoAlumno
             // 
             this.Txt_ApellidoAlumno.Location = new System.Drawing.Point(125, 90);
-            this.Txt_ApellidoAlumno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Txt_ApellidoAlumno.Margin = new System.Windows.Forms.Padding(4);
             this.Txt_ApellidoAlumno.Name = "Txt_ApellidoAlumno";
             this.Txt_ApellidoAlumno.Size = new System.Drawing.Size(132, 22);
             this.Txt_ApellidoAlumno.TabIndex = 5;
@@ -306,7 +280,7 @@
             // Txt_NombreAlumno
             // 
             this.Txt_NombreAlumno.Location = new System.Drawing.Point(125, 58);
-            this.Txt_NombreAlumno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Txt_NombreAlumno.Margin = new System.Windows.Forms.Padding(4);
             this.Txt_NombreAlumno.Name = "Txt_NombreAlumno";
             this.Txt_NombreAlumno.Size = new System.Drawing.Size(132, 22);
             this.Txt_NombreAlumno.TabIndex = 4;
@@ -363,9 +337,9 @@
             this.PaginaMateria.Controls.Add(this.label11);
             this.PaginaMateria.Controls.Add(this.label10);
             this.PaginaMateria.Location = new System.Drawing.Point(4, 25);
-            this.PaginaMateria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PaginaMateria.Margin = new System.Windows.Forms.Padding(4);
             this.PaginaMateria.Name = "PaginaMateria";
-            this.PaginaMateria.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PaginaMateria.Padding = new System.Windows.Forms.Padding(4);
             this.PaginaMateria.Size = new System.Drawing.Size(439, 328);
             this.PaginaMateria.TabIndex = 2;
             this.PaginaMateria.Text = "Nueva Materia";
@@ -375,7 +349,7 @@
             // 
             this.ComboBox_ListSubject.FormattingEnabled = true;
             this.ComboBox_ListSubject.Location = new System.Drawing.Point(81, 250);
-            this.ComboBox_ListSubject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComboBox_ListSubject.Margin = new System.Windows.Forms.Padding(4);
             this.ComboBox_ListSubject.Name = "ComboBox_ListSubject";
             this.ComboBox_ListSubject.Size = new System.Drawing.Size(160, 24);
             this.ComboBox_ListSubject.TabIndex = 14;
@@ -384,7 +358,7 @@
             // Btn_BuscarMateria
             // 
             this.Btn_BuscarMateria.Location = new System.Drawing.Point(180, 190);
-            this.Btn_BuscarMateria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_BuscarMateria.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_BuscarMateria.Name = "Btn_BuscarMateria";
             this.Btn_BuscarMateria.Size = new System.Drawing.Size(100, 28);
             this.Btn_BuscarMateria.TabIndex = 13;
@@ -395,7 +369,7 @@
             // Btn_EliminarMateria
             // 
             this.Btn_EliminarMateria.Location = new System.Drawing.Point(180, 140);
-            this.Btn_EliminarMateria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_EliminarMateria.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_EliminarMateria.Name = "Btn_EliminarMateria";
             this.Btn_EliminarMateria.Size = new System.Drawing.Size(100, 28);
             this.Btn_EliminarMateria.TabIndex = 12;
@@ -406,7 +380,7 @@
             // Btn_EditarMateria
             // 
             this.Btn_EditarMateria.Location = new System.Drawing.Point(52, 190);
-            this.Btn_EditarMateria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_EditarMateria.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_EditarMateria.Name = "Btn_EditarMateria";
             this.Btn_EditarMateria.Size = new System.Drawing.Size(100, 28);
             this.Btn_EditarMateria.TabIndex = 11;
@@ -417,7 +391,7 @@
             // Btn_GuardarMateria
             // 
             this.Btn_GuardarMateria.Location = new System.Drawing.Point(52, 140);
-            this.Btn_GuardarMateria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_GuardarMateria.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_GuardarMateria.Name = "Btn_GuardarMateria";
             this.Btn_GuardarMateria.Size = new System.Drawing.Size(100, 28);
             this.Btn_GuardarMateria.TabIndex = 10;
@@ -433,7 +407,7 @@
             "Tarde",
             "Noche"});
             this.ComboBox_TurnoMateria.Location = new System.Drawing.Point(180, 85);
-            this.ComboBox_TurnoMateria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComboBox_TurnoMateria.Margin = new System.Windows.Forms.Padding(4);
             this.ComboBox_TurnoMateria.Name = "ComboBox_TurnoMateria";
             this.ComboBox_TurnoMateria.Size = new System.Drawing.Size(160, 24);
             this.ComboBox_TurnoMateria.TabIndex = 9;
@@ -441,7 +415,7 @@
             // Txt_NombreMateria
             // 
             this.Txt_NombreMateria.Location = new System.Drawing.Point(180, 48);
-            this.Txt_NombreMateria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Txt_NombreMateria.Margin = new System.Windows.Forms.Padding(4);
             this.Txt_NombreMateria.Name = "Txt_NombreMateria";
             this.Txt_NombreMateria.Size = new System.Drawing.Size(132, 22);
             this.Txt_NombreMateria.TabIndex = 3;
@@ -470,7 +444,7 @@
             // 
             this.Dgv_Listado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_Listado.Location = new System.Drawing.Point(489, 80);
-            this.Dgv_Listado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Dgv_Listado.Margin = new System.Windows.Forms.Padding(4);
             this.Dgv_Listado.Name = "Dgv_Listado";
             this.Dgv_Listado.RowHeadersWidth = 51;
             this.Dgv_Listado.Size = new System.Drawing.Size(761, 416);
@@ -479,28 +453,30 @@
             // Btn_CursosMateria
             // 
             this.Btn_CursosMateria.Location = new System.Drawing.Point(489, 32);
-            this.Btn_CursosMateria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_CursosMateria.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_CursosMateria.Name = "Btn_CursosMateria";
             this.Btn_CursosMateria.Size = new System.Drawing.Size(148, 28);
             this.Btn_CursosMateria.TabIndex = 2;
             this.Btn_CursosMateria.Text = "Buscar Por Materia";
             this.Btn_CursosMateria.UseVisualStyleBackColor = true;
+            this.Btn_CursosMateria.Click += new System.EventHandler(this.Btn_CursosMateria_Click);
             // 
             // Btn_CursosAlumno
             // 
             this.Btn_CursosAlumno.Location = new System.Drawing.Point(925, 32);
-            this.Btn_CursosAlumno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_CursosAlumno.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_CursosAlumno.Name = "Btn_CursosAlumno";
             this.Btn_CursosAlumno.Size = new System.Drawing.Size(100, 28);
             this.Btn_CursosAlumno.TabIndex = 3;
             this.Btn_CursosAlumno.Text = "Buscar por Alumno";
             this.Btn_CursosAlumno.UseVisualStyleBackColor = true;
+            this.Btn_CursosAlumno.Click += new System.EventHandler(this.Btn_CursosAlumno_Click);
             // 
             // ComboBox_SeleccionarMateria1
             // 
             this.ComboBox_SeleccionarMateria1.FormattingEnabled = true;
             this.ComboBox_SeleccionarMateria1.Location = new System.Drawing.Point(675, 33);
-            this.ComboBox_SeleccionarMateria1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComboBox_SeleccionarMateria1.Margin = new System.Windows.Forms.Padding(4);
             this.ComboBox_SeleccionarMateria1.Name = "ComboBox_SeleccionarMateria1";
             this.ComboBox_SeleccionarMateria1.Size = new System.Drawing.Size(160, 24);
             this.ComboBox_SeleccionarMateria1.TabIndex = 4;
@@ -508,7 +484,7 @@
             // Txt_CursoAlumno
             // 
             this.Txt_CursoAlumno.Location = new System.Drawing.Point(1060, 33);
-            this.Txt_CursoAlumno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Txt_CursoAlumno.Margin = new System.Windows.Forms.Padding(4);
             this.Txt_CursoAlumno.Name = "Txt_CursoAlumno";
             this.Txt_CursoAlumno.Size = new System.Drawing.Size(132, 22);
             this.Txt_CursoAlumno.TabIndex = 5;
@@ -520,13 +496,22 @@
             // Btn_LimpiarTodo
             // 
             this.Btn_LimpiarTodo.Location = new System.Drawing.Point(204, 443);
-            this.Btn_LimpiarTodo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_LimpiarTodo.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_LimpiarTodo.Name = "Btn_LimpiarTodo";
             this.Btn_LimpiarTodo.Size = new System.Drawing.Size(100, 28);
             this.Btn_LimpiarTodo.TabIndex = 6;
             this.Btn_LimpiarTodo.Text = "Limpiar";
             this.Btn_LimpiarTodo.UseVisualStyleBackColor = true;
             this.Btn_LimpiarTodo.Click += new System.EventHandler(this.Btn_LimpiarTodo_Click);
+            // 
+            // check_aprobado
+            // 
+            this.check_aprobado.AutoSize = true;
+            this.check_aprobado.Location = new System.Drawing.Point(197, 138);
+            this.check_aprobado.Name = "check_aprobado";
+            this.check_aprobado.Size = new System.Drawing.Size(18, 17);
+            this.check_aprobado.TabIndex = 14;
+            this.check_aprobado.UseVisualStyleBackColor = true;
             // 
             // FormularioInstitucion
             // 
@@ -540,7 +525,7 @@
             this.Controls.Add(this.Btn_CursosMateria);
             this.Controls.Add(this.Dgv_Listado);
             this.Controls.Add(this.Pag);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormularioInstitucion";
             this.Text = "FormularioInstitucion";
             this.Load += new System.EventHandler(this.FormularioInstitucion_Load);
@@ -590,8 +575,6 @@
         private System.Windows.Forms.Button Btn_EditarMateria;
         private System.Windows.Forms.Button Btn_GuardarMateria;
         private System.Windows.Forms.ComboBox ComboBox_TurnoMateria;
-        private System.Windows.Forms.RadioButton Rb_NoAprobo;
-        private System.Windows.Forms.RadioButton Rb_SiAprobo;
         private System.Windows.Forms.Button Btn_AgregarCursada;
         private System.Windows.Forms.DataGridView Dgv_Listado;
         private System.Windows.Forms.Button Btn_CursosMateria;
@@ -602,5 +585,6 @@
         private System.Windows.Forms.ComboBox ComboBox_ListSubject;
         private System.Windows.Forms.TextBox TxtAlumnoQueCursaDni;
         private System.Windows.Forms.Button Btn_LimpiarTodo;
+        private System.Windows.Forms.CheckBox check_aprobado;
     }
 }

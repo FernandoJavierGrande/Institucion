@@ -266,13 +266,26 @@ namespace Institucion
         {
             bool val = validarTxt(TxtAlumnoQueCursaDni,"dni");
             
+            int idMat = int.Parse(ComboBox_SeleccionarMateria.SelectedValue.ToString());
+
 
             if (val && ComboBox_SeleccionarMateria.SelectedIndex != -1)
             {
-                cursos.CrearCursada(); hacer una subconsulta y cambiar por metodos por dni
+                bool res = cursos.CrearCursada(TxtAlumnoQueCursaDni.Text, idMat, check_aprobado.Checked);
+                if (!res) 
+                {
+                    MessageBox.Show("Ocurrio un error");
+                }
+                else
+                {
+                    MessageBox.Show("Agregado correctamente");
+                    Limpiar();
+                }
             }
         }
         #region alumnosYmaterias
+
+
 
         #endregion
 
@@ -404,8 +417,62 @@ namespace Institucion
         }
 
 
+
         #endregion
 
-        
+        private void Btn_CursosMateria_Click(object sender, EventArgs e)
+        {
+            if (ComboBox_SeleccionarMateria1.SelectedIndex!=-1)
+            {
+                DataTable dt = new DataTable();
+                int idM = int.Parse(ComboBox_SeleccionarMateria1.SelectedValue.ToString());
+
+                dt = cursos.AlumnosPorMateria(idM);
+                if (dt.Rows.Count<1)
+                {
+                    MessageBox.Show("No hay alumnos inscriptos");
+                    Limpiar();
+                }
+                else
+                {
+                    Limpiar();
+                    Dgv_Listado.DataSource = dt;
+                }
+            }
+            else
+            {
+                error.SetError(ComboBox_SeleccionarMateria1,"Seleccione una materia");
+            }
+        }
+
+        private void Btn_CursosAlumno_Click(object sender, EventArgs e)
+        {
+            bool val = validarTxt(Txt_CursoAlumno,"dni");
+
+            if (val)
+            {
+                DataTable dt = new DataTable();
+                alumnos = new AlumnosNegocio();
+                alumnoEnMemoria = new Alumno();
+
+                alumnoEnMemoria = alumnos.buscarAlumno(Txt_CursoAlumno.Text);
+
+                dt = cursos.MateriasPorAlumno(alumnoEnMemoria.IdAlumno);
+                if (dt.Rows.Count < 1)
+                {
+                    MessageBox.Show("El alumno no esta inscripto en ninguna materia");
+                    Limpiar();
+                }
+                else
+                {
+                    Limpiar();
+                    Dgv_Listado.DataSource = dt;
+                }
+            }
+            else
+            {
+                error.SetError(Txt_CursoAlumno,"Deben ser numeros enteros");
+            }
+        }
     }
 }

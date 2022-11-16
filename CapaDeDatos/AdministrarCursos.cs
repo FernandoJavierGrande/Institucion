@@ -16,7 +16,7 @@ namespace CapaDeDatos
         public DataTable MateriasPorAlumno(int IdAlumno)
         {
 
-            string query = $"SELECT a.IdAlumno, a.IdMateria, b.Nombre, b.Turno, a.Aprobado FROM Cursos AS a INNER JOIN Materias AS b ON A.IdMateria=b.IdMateria WHERE a.IdAlumno={IdAlumno}";
+            string query = $"SELECT a.IdMateria, b.Nombre, b.Turno, a.Aprobado FROM Cursos AS a INNER JOIN Materias AS b ON A.IdMateria=b.IdMateria WHERE a.IdAlumno={IdAlumno}";
 
             SqlCommand cmd = new SqlCommand(query, conexion);
 
@@ -94,9 +94,15 @@ namespace CapaDeDatos
                 cmd.Dispose();
             }
         }
-        public bool CrearCursada(Cursos curso)
+        public bool CrearCursada(int idmateria, bool aprobado, string dni)
         {
-            string query = $"INSERT INTO Alumnos VALUES ('{curso.IdAlumno}','{curso.Id_Materia}','{curso.Aprobada}')";
+            AdministrarAlumnos alumn = new AdministrarAlumnos();
+            DataTable dt = new DataTable();
+            
+            dt = alumn.Listar_Alumnos(dni);
+            int id = int.Parse(dt.Rows[0][0].ToString());
+            Console.WriteLine($"valor de id = {id}");
+            string query = $"INSERT INTO Cursos VALUES ({id},{idmateria},'{aprobado}')";
 
             int rows;
 

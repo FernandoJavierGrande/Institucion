@@ -38,19 +38,17 @@ namespace Negocios
             return cursos.EliminarCursada(idAlumno,idMateria);
         }
 
-        public bool CrearCursada(int idAlumno, int idMateria, bool aprobado)
+        public bool CrearCursada(string dni, int idMateria, bool aprobado)
         {
-            
-            
             cursos = new AdministrarCursos();
 
             Cursos nuevaCursada = new Cursos();
 
-            nuevaCursada.Id_Materia = idMateria;
-            nuevaCursada.IdAlumno = idAlumno;
-            nuevaCursada.Aprobada  = aprobado;
+            //nuevaCursada.Id_Materia = idMateria;
+            //nuevaCursada.IdAlumno = idAlumno;
+            //nuevaCursada.Aprobada  = aprobado;
 
-            bool resp = cursos.CrearCursada(nuevaCursada);
+            bool resp = cursos.CrearCursada(idMateria,aprobado,dni);
 
             return resp;
         }
