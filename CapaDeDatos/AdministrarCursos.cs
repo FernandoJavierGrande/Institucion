@@ -129,5 +129,32 @@ namespace CapaDeDatos
             }
 
         }
+        public bool aprobado(Cursos curso)
+        {
+            string query = $"UPDATE Cursos SET Aprobado ='{curso.Aprobada}' WHERE IdAlumno = {curso.IdAlumno} AND IdMateria ={curso.Id_Materia}";
+            int rows;
+            try
+            {
+                AbrirConn();
+
+                cmd = new SqlCommand(query, conexion);
+
+                rows = cmd.ExecuteNonQuery();
+
+                if (rows < 1) throw new Exception($"No se pudo actualizar");
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(query);
+                return false;
+            }
+            finally
+            {
+                CerrarConn();
+                cmd.Dispose();
+            }
+        }
     }
 }

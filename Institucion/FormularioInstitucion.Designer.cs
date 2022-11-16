@@ -247,6 +247,7 @@
             // 
             // Txt_FechaInicio
             // 
+            this.Txt_FechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.Txt_FechaInicio.Location = new System.Drawing.Point(136, 190);
             this.Txt_FechaInicio.Margin = new System.Windows.Forms.Padding(4);
             this.Txt_FechaInicio.Name = "Txt_FechaInicio";
@@ -449,6 +450,7 @@
             this.Dgv_Listado.RowHeadersWidth = 51;
             this.Dgv_Listado.Size = new System.Drawing.Size(761, 416);
             this.Dgv_Listado.TabIndex = 1;
+            this.Dgv_Listado.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Listado_CellDoubleClick);
             // 
             // Btn_CursosMateria
             // 

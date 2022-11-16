@@ -13,14 +13,14 @@ namespace Entidades
         private string nombre;
         private string apellido;
         private int edad;
-
+        private string fecha;
 
         public Alumno()
         {
 
         }
 
-        public Alumno(int idAlumno, string dni, string nombre, string apellido, int edad, DateTime fechaIngreso)
+        public Alumno(int idAlumno, string dni, string nombre, string apellido, int edad, string fechaIngreso)
         {   
             IdAlumno = idAlumno;
             Dni = dni;
@@ -34,7 +34,8 @@ namespace Entidades
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apellido { get => apellido; set => apellido = value; }
         public int Edad { get => edad; set => edad = value; }
-        public DateTime FechaIngreso { get; set; }
+       
         public int IdAlumno { get => idAlumno; set => idAlumno = value; }
+        public string FechaIngreso { get => fecha; set => fecha = value; }
     }
 }

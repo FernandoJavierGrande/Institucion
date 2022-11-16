@@ -42,11 +42,14 @@ namespace Institucion
                 string apellido = Txt_ApellidoAlumno.Text;
                 string dni = Txt_DniAlumno.Text;
                 int edad = int.Parse(Txt_EdadAlumno.Text);
-                DateTime fecha = Txt_FechaInicio.Value;
 
+                DateTime fecha = Txt_FechaInicio.Value.Date;
 
+                string fechas = fecha.ToString("MM-dd-yyyy");
+
+                Console.WriteLine($"{fecha}");
                 string mensaje = "Se guardo correctamente";
-                bool guardado = alumnos.crearAlumno(nombre, apellido, dni, edad, fecha);
+                bool guardado = alumnos.crearAlumno(nombre, apellido, dni, edad, fechas);
 
                 if (!guardado)
                 {
@@ -99,7 +102,7 @@ namespace Institucion
                     Txt_ApellidoAlumno.Text = alumnoEnMemoria.Apellido;
                     Txt_DniAlumno.Text = alumnoEnMemoria.Dni;
                     Txt_EdadAlumno.Text = alumnoEnMemoria.Edad.ToString();
-                    Txt_FechaInicio.Value = alumnoEnMemoria.FechaIngreso;
+                    Txt_FechaInicio.Value = Convert.ToDateTime(alumnoEnMemoria.FechaIngreso);
 
                     EnableBtn("alumno", true);
                 }
@@ -125,8 +128,9 @@ namespace Institucion
                 int edad = int.Parse(Txt_EdadAlumno.Text);
 
                 DateTime fecha = Txt_FechaInicio.Value.Date;
-                Console.WriteLine(fecha);
-                bool guardado = alumnos.ModificarAlumno(id, dni, nombre, apellido, edad, fecha);
+
+                string fechas = fecha.ToString("MM-dd-yyyy");
+                bool guardado = alumnos.ModificarAlumno(id, dni, nombre, apellido, edad, fechas);
 
                 if (!guardado)
                 {
@@ -416,33 +420,38 @@ namespace Institucion
             return true;
         }
 
-
-
-        #endregion
-
-        private void Btn_CursosMateria_Click(object sender, EventArgs e)
+        private void ListarAlumDGV()
         {
-            if (ComboBox_SeleccionarMateria1.SelectedIndex!=-1)
+            if (ComboBox_SeleccionarMateria1.SelectedIndex != -1)
             {
                 DataTable dt = new DataTable();
                 int idM = int.Parse(ComboBox_SeleccionarMateria1.SelectedValue.ToString());
 
+                
                 dt = cursos.AlumnosPorMateria(idM);
-                if (dt.Rows.Count<1)
+                if (dt.Rows.Count < 1)
                 {
                     MessageBox.Show("No hay alumnos inscriptos");
                     Limpiar();
                 }
                 else
                 {
-                    Limpiar();
+                    //Limpiar();
                     Dgv_Listado.DataSource = dt;
+                    materiaEnMemoria.IdMateria = idM;
                 }
             }
             else
             {
-                error.SetError(ComboBox_SeleccionarMateria1,"Seleccione una materia");
+                error.SetError(ComboBox_SeleccionarMateria1, "Seleccione una materia");
             }
+        }
+
+        #endregion
+
+        private void Btn_CursosMateria_Click(object sender, EventArgs e)
+        {
+            ListarAlumDGV();
         }
 
         private void Btn_CursosAlumno_Click(object sender, EventArgs e)
@@ -455,23 +464,56 @@ namespace Institucion
                 alumnos = new AlumnosNegocio();
                 alumnoEnMemoria = new Alumno();
 
-                alumnoEnMemoria = alumnos.buscarAlumno(Txt_CursoAlumno.Text);
-
-                dt = cursos.MateriasPorAlumno(alumnoEnMemoria.IdAlumno);
-                if (dt.Rows.Count < 1)
+                var RESP = alumnos.buscarAlumno(Txt_CursoAlumno.Text);
+                if (RESP != null)
                 {
-                    MessageBox.Show("El alumno no esta inscripto en ninguna materia");
-                    Limpiar();
+                    alumnoEnMemoria = alumnos.buscarAlumno(Txt_CursoAlumno.Text);
+
+                    dt = cursos.MateriasPorAlumno(alumnoEnMemoria.IdAlumno);
+                    if (dt.Rows.Count < 1)
+                    {
+                        MessageBox.Show("El alumno no esta inscripto en ninguna materia");
+                        Limpiar();
+                    }
+                    else
+                    {
+                        Limpiar();
+                        Dgv_Listado.DataSource = dt;
+                    }
                 }
                 else
                 {
-                    Limpiar();
-                    Dgv_Listado.DataSource = dt;
+                    MessageBox.Show($"El alumno con el dni '{Txt_CursoAlumno.Text}' no existe");
                 }
             }
             else
             {
                 error.SetError(Txt_CursoAlumno,"Deben ser numeros enteros");
+            }
+        }
+
+        private void Dgv_Listado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (true)
+            {
+                Cursos curso = new Cursos();
+
+                curso.IdAlumno = int.Parse(Dgv_Listado.CurrentRow.Cells[0].Value.ToString());
+                curso.Id_Materia = int.Parse(ComboBox_SeleccionarMateria1.SelectedValue.ToString());
+                curso.Aprobada = bool.Parse(Dgv_Listado.CurrentRow.Cells[4].Value.ToString());
+
+                curso.Aprobada = !curso.Aprobada;
+                Console.WriteLine($"{curso.Aprobada}");
+
+                bool resp = cursos.aprobado(curso);
+                if (!resp)
+                {
+                    MessageBox.Show("No se pudo Actualizar");
+                }
+                else
+                {
+                    ListarAlumDGV();
+                }
             }
         }
     }

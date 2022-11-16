@@ -52,6 +52,10 @@ namespace Negocios
 
             return resp;
         }
+        public bool aprobado(Cursos curso)
+        {
+            return cursos.aprobado(curso);
+        }
 
     }
 }

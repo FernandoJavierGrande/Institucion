@@ -20,7 +20,7 @@ namespace Negocios
             return dt;
         }
 
-        public bool crearAlumno(string nombre, string apellido, string dni, int edad, DateTime fechaIng)
+        public bool crearAlumno(string nombre, string apellido, string dni, int edad, string fechaIng)
         {
             alumnos = new AdministrarAlumnos();
 
@@ -32,7 +32,7 @@ namespace Negocios
             nuevoAlumno.Dni = dni;
             nuevoAlumno.Edad = edad;
 
-            nuevoAlumno.FechaIngreso = fechaIng.Date;
+            nuevoAlumno.FechaIngreso = fechaIng;
 
             bool resp = alumnos.CrearAlumno(nuevoAlumno);
 
@@ -44,7 +44,7 @@ namespace Negocios
 
             return alumnos.EliminarAlumno(dni); 
         }
-        public bool ModificarAlumno(int id, string dni, string nombre, string apellido, int edad, DateTime fechaIngreso)
+        public bool ModificarAlumno(int id, string dni, string nombre, string apellido, int edad, string fechaIngreso)
         {
             alumnos = new AdministrarAlumnos();
 
@@ -78,7 +78,7 @@ namespace Negocios
                 alumno.Nombre = dt.Rows[0][2].ToString();
                 alumno.Apellido = dt.Rows[0][3].ToString();
                 alumno.Edad = int.Parse(dt.Rows[0][4].ToString());
-                alumno.FechaIngreso = DateTime.Parse(dt.Rows[0][5].ToString());
+                alumno.FechaIngreso =dt.Rows[0][5].ToString();
             }
             
 
