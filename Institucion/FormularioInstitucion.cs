@@ -266,17 +266,19 @@ namespace Institucion
         }
 
         #endregion
+
+        #region alumnosYmaterias
         private void Btn_AgregarCursada_Click(object sender, EventArgs e)
         {
-            bool val = validarTxt(TxtAlumnoQueCursaDni,"dni");
-            
+            bool val = validarTxt(TxtAlumnoQueCursaDni, "dni");
+
             int idMat = int.Parse(ComboBox_SeleccionarMateria.SelectedValue.ToString());
 
 
             if (val && ComboBox_SeleccionarMateria.SelectedIndex != -1)
             {
                 bool res = cursos.CrearCursada(TxtAlumnoQueCursaDni.Text, idMat, check_aprobado.Checked);
-                if (!res) 
+                if (!res)
                 {
                     MessageBox.Show("Ocurrio un error");
                 }
@@ -287,9 +289,73 @@ namespace Institucion
                 }
             }
         }
-        #region alumnosYmaterias
+        private void Btn_CursosMateria_Click(object sender, EventArgs e)
+        {
+            ListarAlumDGV();
+        }
 
+        private void Btn_CursosAlumno_Click(object sender, EventArgs e)
+        {
+            bool val = validarTxt(Txt_CursoAlumno, "dni");
 
+            if (val)
+            {
+                DataTable dt = new DataTable();
+                alumnos = new AlumnosNegocio();
+                alumnoEnMemoria = new Alumno();
+
+                var RESP = alumnos.buscarAlumno(Txt_CursoAlumno.Text);
+                if (RESP != null)
+                {
+                    alumnoEnMemoria = alumnos.buscarAlumno(Txt_CursoAlumno.Text);
+
+                    dt = cursos.MateriasPorAlumno(alumnoEnMemoria.IdAlumno);
+                    if (dt.Rows.Count < 1)
+                    {
+                        MessageBox.Show("El alumno no esta inscripto en ninguna materia");
+                        Limpiar();
+                    }
+                    else
+                    {
+                        Limpiar();
+                        Dgv_Listado.DataSource = dt;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"El alumno con el dni '{Txt_CursoAlumno.Text}' no existe");
+                }
+            }
+            else
+            {
+                error.SetError(Txt_CursoAlumno, "Deben ser numeros enteros");
+            }
+        }
+
+        private void Dgv_Listado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (true)
+            {
+                Cursos curso = new Cursos();
+
+                curso.IdAlumno = int.Parse(Dgv_Listado.CurrentRow.Cells[0].Value.ToString());
+                curso.Id_Materia = int.Parse(ComboBox_SeleccionarMateria1.SelectedValue.ToString());
+                curso.Aprobada = bool.Parse(Dgv_Listado.CurrentRow.Cells[4].Value.ToString());
+
+                curso.Aprobada = !curso.Aprobada;
+                Console.WriteLine($"{curso.Aprobada}");
+
+                bool resp = cursos.aprobado(curso);
+                if (!resp)
+                {
+                    MessageBox.Show("No se pudo Actualizar");
+                }
+                else
+                {
+                    ListarAlumDGV();
+                }
+            }
+        }
 
         #endregion
 
@@ -449,72 +515,6 @@ namespace Institucion
 
         #endregion
 
-        private void Btn_CursosMateria_Click(object sender, EventArgs e)
-        {
-            ListarAlumDGV();
-        }
-
-        private void Btn_CursosAlumno_Click(object sender, EventArgs e)
-        {
-            bool val = validarTxt(Txt_CursoAlumno,"dni");
-
-            if (val)
-            {
-                DataTable dt = new DataTable();
-                alumnos = new AlumnosNegocio();
-                alumnoEnMemoria = new Alumno();
-
-                var RESP = alumnos.buscarAlumno(Txt_CursoAlumno.Text);
-                if (RESP != null)
-                {
-                    alumnoEnMemoria = alumnos.buscarAlumno(Txt_CursoAlumno.Text);
-
-                    dt = cursos.MateriasPorAlumno(alumnoEnMemoria.IdAlumno);
-                    if (dt.Rows.Count < 1)
-                    {
-                        MessageBox.Show("El alumno no esta inscripto en ninguna materia");
-                        Limpiar();
-                    }
-                    else
-                    {
-                        Limpiar();
-                        Dgv_Listado.DataSource = dt;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show($"El alumno con el dni '{Txt_CursoAlumno.Text}' no existe");
-                }
-            }
-            else
-            {
-                error.SetError(Txt_CursoAlumno,"Deben ser numeros enteros");
-            }
-        }
-
-        private void Dgv_Listado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (true)
-            {
-                Cursos curso = new Cursos();
-
-                curso.IdAlumno = int.Parse(Dgv_Listado.CurrentRow.Cells[0].Value.ToString());
-                curso.Id_Materia = int.Parse(ComboBox_SeleccionarMateria1.SelectedValue.ToString());
-                curso.Aprobada = bool.Parse(Dgv_Listado.CurrentRow.Cells[4].Value.ToString());
-
-                curso.Aprobada = !curso.Aprobada;
-                Console.WriteLine($"{curso.Aprobada}");
-
-                bool resp = cursos.aprobado(curso);
-                if (!resp)
-                {
-                    MessageBox.Show("No se pudo Actualizar");
-                }
-                else
-                {
-                    ListarAlumDGV();
-                }
-            }
-        }
+        
     }
 }

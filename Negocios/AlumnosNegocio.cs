@@ -57,7 +57,7 @@ namespace Negocios
             AlumnoMod.Edad = edad;
             AlumnoMod.FechaIngreso = fechaIngreso;
 
-            return alumnos.Mod_Alumno(AlumnoMod);
+            return alumnos.Mod_Alumno(AlumnoMod );
         }
         public Alumno buscarAlumno(string dni)
         {

@@ -93,10 +93,10 @@ namespace CapaDeDatos
 
             //alumnoMod.IdAlumno = int.Parse( resp.Tables[0].Rows[0]["IdAlumno"].ToString());
             #endregion
+            //$"UPDATE Alumnos SET Dni = '{alumno.Dni}', Nombre = '{alumno.Nombre}', Apellido = '{alumno.Apellido}', Edad = {alumno.Edad}, FechaInicio ='{alumno.FechaIngreso}' FROM (SELECT a.IdAlumno FROM Alumnos AS a WHERE a.Dni ='{dni}') AS id WHERE Alumnos.IdAlumno = id.IdAlumno";
 
-            Console.WriteLine(alumno.Dni);
-            
-            string query = $"UPDATE Alumnos SET Dni = '{alumno.Dni}', Nombre = '{alumno.Nombre}', Apellido = '{alumno.Apellido}', Edad = {alumno.Edad}, FechaInicio ='{alumno.FechaIngreso}' FROM (SELECT a.IdAlumno FROM Alumnos AS a WHERE a.Dni ='{alumno.Dni}') AS id WHERE Alumnos.IdAlumno = id.IdAlumno";
+
+            string query = $"UPDATE Alumnos SET Dni = '{alumno.Dni}', Nombre = '{alumno.Nombre}', Apellido = '{alumno.Apellido}', Edad = {alumno.Edad}, FechaInicio ='{alumno.FechaIngreso}' WHERE IdAlumno = {alumno.IdAlumno}";
             int rows;
             Console.WriteLine(alumno.Dni);
             try
